@@ -2,8 +2,8 @@
 
 [Geometry]
 Length  = 11E-3                 # Length of channel [m]
-Width   = 20E-3                 # Width  of channel [m]
-Height  = 70E-6                 # Height of channel [m]
+Width   = 1E-3                  # Width  of channel [m]
+Height  = 1E-3                  # Height of channel [m]
 
 [Mixture]
 
@@ -15,7 +15,7 @@ Radius = 1.9E-9                 # Equivalent spherical radius of chemoattractant
 
 [SystemParameters]
 Temperature = 320.15            # System temperature [K]
-Initial_concentration = 1.0     # Prepared concentration of chemoattractant solution [M]
+Initial_concentration = 100E-9  # Prepared concentration of chemoattractant solution [M]
 
 [RateConstants]
 
