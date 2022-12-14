@@ -46,3 +46,8 @@ Height: .07mm
 Ibidi device time to linearize = 26 hours
 
 All other parameters (chemoattractant, buffer, C0) should be same
+
+
+# Instructions
+Edit values in config.toml to change system parameters
+Run Diffusion.ipynb to solve model

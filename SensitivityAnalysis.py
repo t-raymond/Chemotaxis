@@ -1,3 +1,7 @@
+"""
+Module containing functions relating to sensitivity analyses
+"""
+
 import numpy as np
 from Plots import SA_1D
 from SALib.sample import morris as ms
@@ -5,26 +9,46 @@ from SALib.analyze import morris as ma
 from SALib.plotting import morris as mp
 import matplotlib.pyplot as plt
 
-def Alpha(fun):
-    num_pts = 51
-    A = np.logspace(-5, 5, num_pts)
-    t_B = np.zeros(num_pts)
-    t_BL = np.zeros(num_pts)
+def Alpha(fun, alpha_vals, beta, Keq, **kwargs):
+    """
+    1D sensitivity analysis for parameter alpha (with fixed beta and Keq)
+    """
+    
+    t_B  = np.zeros(len(alpha_vals))
+    t_BL = np.zeros(len(alpha_vals))
 
-    for i, a in enumerate(A):
-        t_B[i], t_BL[i] = fun(linearity = 0.95, alpha = a, beta = 1., Keq = 3.)
+    for i, a in enumerate(alpha_vals):
+        t_B[i], t_BL[i] = fun(a, beta, Keq, **kwargs)
 
-    fig = SA_1D((A, A), (t_B, t_BL), ("Bulk", "Boundary Layer"), r"$\alpha$", r"$Fo_{m}$", r"Dimensionless Time to Linearity")
+    fig = SA_1D((alpha_vals, alpha_vals), (t_B, t_BL), ("Bulk", "Boundary Layer"), r"$\alpha$", r"$Fo_{m}$", r"Dimensionless Time to Linearity")
 
     return fig
 
 def Beta(fun):
+    """
+    \\TODO
+
+    Make 1D sensitivity analysis for parameter beta (with fixed alpha and Keq)
+    """
+    
     pass
 
 def KEQ(fun):
+    """
+    \\TODO
+
+    Make 1D sensitivity analysis for parameter Keq (with fixed alpha and beta)
+    """
+    
     pass
 
 def Morris():
+    """
+    \\TODO
+    
+    Make Morris sensitivity analysis work for 3 dimensionless parameters (alpha, beta, Keq)
+    """
+    
     morris_problem = {
         'num_vars': 3,
         'names': ['alpha','beta','Keq'],

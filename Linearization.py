@@ -1,3 +1,7 @@
+"""
+Module containing functions relating to determination of linearity
+"""
+
 from Solver import solve_pde
 import numpy as np
 from scipy.stats import linregress
@@ -27,13 +31,12 @@ def time_to_linearize(C_profile, t_array, dist_array, desired_linearity):
     
     return False
 
-def linearization(linearity = .99, alpha = 5, beta = 1, Keq = 3):
-    ## Inputs
+def linearization(alpha, beta, Keq, linearity = 0.99):
     '''
     # Dimensionless Parameters
-    alpha = 5.  # k*L^2/D
-    beta = 1.   # f*(S0/C0)^(1/n)
-    n = 3.      # n
+    alpha = k * L ^ 2 / D
+    beta  = kads / k
+    Keq   = Keq
     '''
 
     # Solver parameters

@@ -1,23 +1,35 @@
 # Configuration parameters
 
 [Geometry]
-length  = 11E-3                 # Length of channel [m]
-width   = 20E-3                 # Width  of channel [m]
-height  = 70E-6                 # Height of channel [m]
+Length  = 11E-3                 # Length of channel [m]
+Width   = 20E-3                 # Width  of channel [m]
+Height  = 70E-6                 # Height of channel [m]
 
 [Mixture]
 
 [Mixture.Buffer]
-dynamic_viscosity = 692.2E-6    # Dynamic viscosity of buffer [Pa.s]
+Dynamic_viscosity = 692.2E-6    # Dynamic viscosity of buffer [Pa.s]
 
 [Mixture.Chemoattractant]
-radius = 1.9E-9                 # Equivalent spherical radius of chemoattractant [m]
+Radius = 1.9E-9                 # Equivalent spherical radius of chemoattractant [m]
 
-[System]
-temperature = 320.15            # System temperature [K]
-initial_concentration = 1.0     # Prepared concentration of chemoattractant solution [M]
+[SystemParameters]
+Temperature = 320.15            # System temperature [K]
+Initial_concentration = 1.0     # Prepared concentration of chemoattractant solution [M]
 
 [RateConstants]
-Boundary   = 1.0                # Rate constant for mass transfer between bulk and boundary layer [1/s]
-Adsorption = 2.0                # Rate constant for adsorption from boundary layer to nanofibers  [1/s]
-Isotherm   = 3.0                # Equilibrium constant for Langmuir adsorption isotherm           [ - ]
+
+[RateConstants.Boundary]
+A = 1.0                         # Boundary layer mass transfer rate constant [1/s]
+Ea = 0.0                        # Activation energy [J/mol.K]
+Tref = 320.15                   # Reference temperature [K]
+
+[RateConstants.Adsorption]
+A = 2.0                         # Adsorption rate constant [1/s]
+Ea = 0.0                        # Activation energy [J/mol.K]
+Tref = 320.15                   # Reference temperature [K]
+
+[RateConstants.Isotherm]
+A = 3.0                         # Adsorption isotherm equilibrium constant [-]
+Ea = 0.0                        # Activation energy [J/mol.K]
+Tref = 320.15                   # Reference temperature [K]

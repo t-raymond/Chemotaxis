@@ -1,3 +1,7 @@
+"""
+Module containing functions relating to plotting of systems results
+"""
+
 import matplotlib.pyplot as plt
 from matplotlib import animation, rc
 import numpy as np
@@ -19,7 +23,7 @@ def SA_1D(x, y, labels, xlabel, ylabel, title):
 # Initialization function
 def init():
     """
-    
+    Initialize animation figure
     """
     line_B.set_data([], [])
     line_BL.set_data([], [])
@@ -29,7 +33,7 @@ def init():
 
 def animate(i):
     """
-    
+    Iterate through times and update animated figure
     """
     
     X = x
@@ -69,9 +73,11 @@ def animate(i):
 
     return(line_B, line_BL, line_Ads)
 
-def MakeAnimation(x, t, y_B, y_BL, y_Ads):
+def MakeAnimation(x, t, y_B, y_BL, y_Ads, save = False):
     """
-    
+    \\TODO
+
+    Make the animation function work again
     """
 
     # Initialize figure
@@ -88,7 +94,10 @@ def MakeAnimation(x, t, y_B, y_BL, y_Ads):
 
     # Create animation
     anim = animation.FuncAnimation(fig, animate, init_func = init, frames = len(t), interval = 100, blit = True)
-    return anim
 
     # Save animation
-    # anim.save('Diffusion.mp4', fps = 10)
+    if save == True: anim.save('Diffusion.mp4', fps = 10)
+
+    return anim
+
+    

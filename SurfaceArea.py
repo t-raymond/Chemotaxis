@@ -1,3 +1,7 @@
+"""
+Module containing functions relating to estimation of nanofiber surface area
+"""
+
 import numpy as np
 import math
 
