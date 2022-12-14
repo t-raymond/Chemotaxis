@@ -32,8 +32,9 @@ def AdsorptionSites(particle_radius, nf_radius, nf_concentration):
         
     default_area = 1 #unit area without nanofibers
     
-    sa_nf = np.pi*particle_radius
-    additional_sa_nf = (sa_nf - 2*particle_radius)*nf_concentration #addition of fibers increases surface area
+    sa_nf = np.pi*nf_radius
+    
+    additional_sa_nf = (sa_nf - 2*nf_radius)*nf_concentration #addition of fibers increases surface area
     
     area = default_area + additional_sa_nf
     
@@ -42,6 +43,6 @@ def AdsorptionSites(particle_radius, nf_radius, nf_concentration):
     '''
     6.02e23 particles/1mol
     '''
-    mol_max_ads = ads_sites/6.02E23 #mol/m^2
+    mol_max_ads = ads_sites/6.02e23 #mol/m^2
     
     return mol_max_ads
