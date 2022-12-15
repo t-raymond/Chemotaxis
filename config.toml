@@ -4,32 +4,32 @@
 Length  = 11E-3                 # Length of channel [m]
 Width   = 1E-3                  # Width  of channel [m]
 Height  = 1E-3                  # Height of channel [m]
+Boundary_Layer_Thickness = 1E-6 # Boundary layer thickness [m]
 
-[Mixture]
+[Component]
 
-[Mixture.Buffer]
-Dynamic_viscosity = 692.2E-6    # Dynamic viscosity of buffer [Pa.s]
+[Component.Buffer]
+Dynamic_Viscosity = 692.2E-6    # Dynamic viscosity of buffer [Pa.s]
 
-[Mixture.Chemoattractant]
+[Component.Chemoattractant]
 Radius = 1.9E-9                 # Equivalent spherical radius of chemoattractant [m]
+Initial_Concentration = 100E-9  # Prepared concentration of chemoattractant solution [M]
 
-[SystemParameters]
-Temperature = 320.15            # System temperature [K]
-Initial_concentration = 100E-9  # Prepared concentration of chemoattractant solution [M]
+[Component.Nanofiber]
+Radius = 500E-6                 # Mean radius of nanofibers [m]
+Strand_Linear_Density = 100     # Linear density of nanofiber strands [1/m]
 
 [RateConstants]
 
-[RateConstants.Boundary]
-A = 1.0                         # Boundary layer mass transfer rate constant [1/s]
-Ea = 0.0                        # Activation energy [J/mol.K]
-Tref = 320.15                   # Reference temperature [K]
-
 [RateConstants.Adsorption]
-A = 2.0                         # Adsorption rate constant [1/s]
+A = 100E3                       # Adsorption rate constant [1/s]
 Ea = 0.0                        # Activation energy [J/mol.K]
 Tref = 320.15                   # Reference temperature [K]
 
 [RateConstants.Isotherm]
-A = 3.0                         # Adsorption isotherm equilibrium constant [-]
+A = 1E6                         # Adsorption isotherm equilibrium constant [1/M]
 Ea = 0.0                        # Activation energy [J/mol.K]
 Tref = 320.15                   # Reference temperature [K]
+
+[ThermodynamicConditions]
+Temperature = 320.15            # System temperature [K]

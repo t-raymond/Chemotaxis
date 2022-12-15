@@ -31,17 +31,14 @@ def time_to_linearize(C_profile, t_array, dist_array, desired_linearity):
     
     return False
 
-def linearization(alpha, beta, Keq, linearity = 0.99):
-    '''
-    # Dimensionless Parameters
-    alpha = k * L ^ 2 / D
-    beta  = kads / k
-    Keq   = Keq
-    '''
+def linearization(lambda_d, lambda_h, k_A, k_eq, theta_S, linearity = 0.99):
+    """
+    Determines the time to linearity for bulk and boundary layers
+    """
 
     # Solver parameters
-    seg = 101       # Number of length segments
-    tf = 10 ** 3    # Final time
+    seg = 101      # Number of length segments
+    tf = 1.0E5      # Final time
 
     # Boundary conditions
     theta_BC = np.array((1., 0.))
@@ -50,13 +47,13 @@ def linearization(alpha, beta, Keq, linearity = 0.99):
     theta_IC = np.zeros(3 * seg)
     
     # Solve PDEs
-    sol = solve_pde(tf, theta_IC, theta_BC, alpha, beta, Keq)
+    sol = solve_pde(tf, theta_IC, theta_BC, lambda_d, lambda_h, k_A, k_eq, theta_S)
 
     # Unpack solution
-    t = sol.t
-    theta_B, theta_BL, theta_Ads = np.split(sol.y, 3)
+    t = np.logspace(np.log10(tf) - 10, np.log10(tf), 1001)
+    theta_B, theta_BL, theta_Ads = np.split(sol.sol(t), 3)
     
     t_B = time_to_linearize(theta_B.T, t, np.linspace(0, 1, seg), linearity)
     t_BL = time_to_linearize(theta_BL.T, t, np.linspace(0, 1, seg), linearity)
-    
+
     return [t_B, t_BL]
