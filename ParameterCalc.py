@@ -5,6 +5,7 @@ Module to calculate system parameters
 from scipy.constants import Boltzmann as kB
 from scipy.constants import gas_constant as R
 from scipy.constants import pi
+from scipy.constants import Avogadro as NA
 import numpy as np
 
 def Diffusivity(T, eta, r):
@@ -32,7 +33,7 @@ def AdsorptionSites(particle_radius, nf_radius, nf_concentration):
         
     default_area = 1 #unit area without nanofibers
     
-    sa_nf = np.pi*nf_radius
+    sa_nf = pi*nf_radius
     
     additional_sa_nf = (sa_nf - 2*nf_radius)*nf_concentration #addition of fibers increases surface area
     
@@ -40,9 +41,6 @@ def AdsorptionSites(particle_radius, nf_radius, nf_concentration):
     
     ads_sites = area/a_particle #particles/m^2
     
-    '''
-    6.02e23 particles/1mol
-    '''
-    mol_max_ads = ads_sites/6.02e23 #mol/m^2
+    mol_max_ads = ads_sites/NA #mol/m^2
     
     return mol_max_ads
